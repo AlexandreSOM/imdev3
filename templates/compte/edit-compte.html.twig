@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page ajouter un compte{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un compte </h1>
+    <button type="button" class="btn btn-outline-primary"> <a href="{{ path('home') }}"><i class="fas fa-home"></i>  Retour sur accueil  </a></button>
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+            {{ form_start(form) }}
+            <tr class="table-active">
+                <th scope="col">Nom du compte</th>
+                <th scope="col">Lien site</th>
+                <th scope="col">MAIl</th>
+                <th scope="col">LOGIN</th>
+                <th scope="col">PASSWORD</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">Validation</th>
+            </tr>
+            </thead>
+            <tbody class="table">
+
+            <tr>
+                <th scope="row">{{ form_row(form.nomCompte, {'attr' : {'placeholder' : "Nom du compte"}}) }}</th>
+                <td>{{ form_row(form.urlCompte, {'attr' : {'placeholder' : "Placer ici l'URL"}}) }}</td>
+                <td>{{ form_row(form.mailCompte, {'attr' : {'placeholder' : "Votre mail"}}) }}</td>
+                <td>{{ form_row(form.loginCompte, {'attr' : {'placeholder' : "Votre identifiant"}}) }}</td>
+                <td>{{ form_row(form.passwordCompte, {'attr' : {'placeholder' : "Votre mot de passe"}}) }}</td>
+                <td>{{ form_row(form.descriptionCompte, {'attr' : {'placeholder' : "Votre description"}}) }}</td>
+                <td>
+                    <button type="submit" class="btn btn-outline-primary"> VALIDER </button>
+                </td>
+             {{ form_end(form) }}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

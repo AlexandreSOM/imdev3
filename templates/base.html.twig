@@ -11,8 +11,10 @@
     {% endblock %}
 </head>
 <body>
-{% include 'parts/header.html.twig' with {'name': 'navbar'} %}
-{% block body %}{% endblock %}
+    {% include 'parts/header.html.twig' with {'name': 'navbar'} %}
+
+    {% block body %} {% endblock %}
+
 {% block javascripts %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

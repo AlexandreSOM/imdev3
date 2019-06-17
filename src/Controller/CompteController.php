@@ -10,17 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CompteController extends AbstractController
 {
-    /**
-     * @Route("/remove-compte/{compte}", name="remove-compte")
-     */
-    public
-    function removeCompte(Compte $compte)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($compte);
-        $em->flush();
-        return $this->redirectToRoute('home');
-    }
+
 
     /**
      * @Route("/compte/ajout", name="compte-ajout")
@@ -38,6 +28,10 @@ class CompteController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($compte);
             $em->flush();
+//            $this->addFlash(
+//                'notice',
+//                'Your changes were saved!'
+            $this->addFlash('warning', "Edition du compte avec succès !");
             return $this->redirectToRoute('home');
         } else {
             return $this->render('compte/edit-compte.html.twig', [
@@ -45,5 +39,18 @@ class CompteController extends AbstractController
             ]);
 
         }
+    }
+
+    /**
+     * @Route("/remove-compte/{compte}", name="remove-compte")
+     */
+    public
+    function removeCompte(Compte $compte)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($compte);
+        $em->flush();
+        $this->addFlash('success', 'Ce compte vient d\'être supprimé avec succès !');
+        return $this->redirectToRoute('home');
     }
 }
